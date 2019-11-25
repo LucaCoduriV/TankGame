@@ -20,7 +20,7 @@ public class MyPlayerController2D : MonoBehaviour
 
     private GameObject cannonPivot;
     private GameObject bulletController;
-    private bool facingRight = true;
+    public bool facingRight = true;
     
     
 
