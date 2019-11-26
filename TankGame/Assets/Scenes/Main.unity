@@ -888,5 +888,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1660496312258827618, guid: 49521286c3a9a1949b8010fef477935c,
+        type: 3}
+      propertyPath: m_LinearDrag
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1660496312258827617, guid: 49521286c3a9a1949b8010fef477935c,
+        type: 3}
+      propertyPath: tankVelocity
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49521286c3a9a1949b8010fef477935c, type: 3}

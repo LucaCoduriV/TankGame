@@ -18,7 +18,6 @@ public class TerrainGenerator : MonoBehaviour
 
     private float seed;
     private GameObject terrain;
-    // Start is called before the first frame update
 
 
     private void Awake()
@@ -34,7 +33,11 @@ public class TerrainGenerator : MonoBehaviour
 
         seed = Random.Range(-10000f, 10000f);
         CreateMesh();
-        //CreateOutSideCollider();
+    }
+
+    private void Start()
+    {
+        CreateOutSideCollider(GetEdges());
     }
 
     private void CreateMesh()
@@ -158,6 +161,26 @@ public class TerrainGenerator : MonoBehaviour
 
     private Vector2[] GetEdges()
     {
-        return new Vector2[10];
+        Vector2[] colliderPath = terrain.GetComponent<PolygonCollider2D>().GetPath(0);
+        Vector2[] edges = new Vector2[4];
+
+        float minX = 0f;
+        float maxX = 0f;
+        float minY = 0f;
+        float maxY = 0f;
+
+        for (int i = 0; i < colliderPath.Length; i++)
+        {
+            if (colliderPath[i].x < minX) minX = colliderPath[i].x;
+            if (colliderPath[i].x > maxX) maxX = colliderPath[i].x;
+            if (colliderPath[i].y < minY) minY = colliderPath[i].y;
+            if (colliderPath[i].y > maxY) maxY = colliderPath[i].y;
+        }
+        Debug.Log(edges.ToString());
+
+
+        //TODO rajouter les min et max dans le tableau edges
+
+        return edges;
     }
 }
