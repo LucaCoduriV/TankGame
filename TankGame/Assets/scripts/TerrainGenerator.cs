@@ -14,6 +14,8 @@ public class TerrainGenerator : MonoBehaviour
     public int heightAddition = 0;
     public float smoothness = 10;
 
+    public static TerrainGenerator instance = null;
+
     private float seed;
 
     // Start is called before the first frame update
@@ -21,6 +23,15 @@ public class TerrainGenerator : MonoBehaviour
 
     private void Awake()
     {
+        if(instance == null)
+        {
+            instance = this;
+        }else if(instance != this)
+        {
+            Destroy(gameObject);
+        }
+
+
         seed = Random.Range(-10000f, 10000f);
         CreateMesh();   
     }
@@ -48,6 +59,10 @@ public class TerrainGenerator : MonoBehaviour
         terrain.GetComponent<MeshRenderer>().sortingLayerName = "foreground";
 
         ColliderCreator colliderCreator = terrain.AddComponent<ColliderCreator>();
+
+        terrain.AddComponent<SpawnCreator>();
+
+
         
 
     }
