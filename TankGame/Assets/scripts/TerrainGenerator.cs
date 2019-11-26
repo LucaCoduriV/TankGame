@@ -42,7 +42,6 @@ public class TerrainGenerator : MonoBehaviour
         Vector2[] uvs = CreateUvs();
         int[] triangles = CreateTriangles();
 
-        //triangles = new int[3] { 0, 1, 2 };
 
         Mesh mesh = new Mesh();
         mesh.vertices = vertices;
