@@ -156,4 +156,8 @@ public class TerrainGenerator : MonoBehaviour
         terrain.GetComponent<EdgeCollider2D>().points = edges;
     }
 
+    private Vector2[] GetEdges()
+    {
+        return new Vector2[10];
+    }
 }
