@@ -21,8 +21,8 @@ public class MyPlayerController2D : MonoBehaviour
     private GameObject cannonPivot;
     private GameObject bulletController;
     public bool facingRight = true;
-    
-    
+    private bool onGround = true;
+
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +30,9 @@ public class MyPlayerController2D : MonoBehaviour
         player = GetComponent<Rigidbody2D>();
         cannonPivot = GameObject.Find("Tank/cannonPivot");
         bulletController = GameObject.Find("BulletController");
-        
+
+
+
     }
 
     // Update is called once per frame
@@ -56,17 +58,21 @@ public class MyPlayerController2D : MonoBehaviour
     public void GoRight()
     {
         if (!facingRight) Flip();
-        speedTarget = new Vector2(tankVelocity, player.velocity.y);
-        player.AddForce(Vector2.right * tankVelocity); 
-        
+        if (onGround)
+        {
+            speedTarget = new Vector2(tankVelocity, player.velocity.y);
+            player.AddForce(Vector2.right * tankVelocity);
+        } 
     }
 
     public void GoLeft()
     {
         if (facingRight) Flip();
-        speedTarget = new Vector2(-tankVelocity, player.velocity.y);
-        player.AddForce(Vector2.left * tankVelocity);
-
+        if (onGround)
+        {
+            speedTarget = new Vector2(-tankVelocity, player.velocity.y);
+            player.AddForce(Vector2.left * tankVelocity);
+        }
     }
 
     public void CannonUp()
@@ -103,5 +109,20 @@ public class MyPlayerController2D : MonoBehaviour
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
+    }
+
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if(collision.otherCollider is CircleCollider2D)
+        {
+            onGround = true;
+            
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        onGround = false;
     }
 }
