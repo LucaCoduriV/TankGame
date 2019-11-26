@@ -114,6 +114,7 @@ public class MyPlayerController2D : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
+        //on check si les roues sont en contacte
         if(collision.otherCollider is CircleCollider2D)
         {
             onGround = true;
@@ -123,6 +124,10 @@ public class MyPlayerController2D : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        onGround = false;
+        //on check si les roues ne sont pas en contacte
+        if (collision.otherCollider is CircleCollider2D)
+        {
+            onGround = false;
+        }
     }
 }
