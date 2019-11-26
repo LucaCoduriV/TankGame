@@ -57,14 +57,16 @@ public class MyPlayerController2D : MonoBehaviour
     {
         if (!facingRight) Flip();
         speedTarget = new Vector2(tankVelocity, player.velocity.y);
-        player.velocity = Vector2.SmoothDamp(player.velocity, speedTarget, ref currentVelocity, movementSmoothing);
+        player.AddForce(Vector2.right * tankVelocity); 
+        
     }
 
     public void GoLeft()
     {
         if (facingRight) Flip();
         speedTarget = new Vector2(-tankVelocity, player.velocity.y);
-        player.velocity = Vector2.SmoothDamp(player.velocity, speedTarget, ref currentVelocity, movementSmoothing);
+        player.AddForce(Vector2.left * tankVelocity);
+
     }
 
     public void CannonUp()
