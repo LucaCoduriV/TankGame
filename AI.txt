@@ -1,0 +1,8 @@
+BUT: détruire le joueur et éviter de mourrir
+
+Comment détruire le joueur:
+se rapprocher du joueur mais pas trop et choisir le bon angle pour tirer
+
+comment survivre:
+Quand un obus arrive sur le AI il doit se déplacer
+
