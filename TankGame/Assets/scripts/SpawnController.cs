@@ -24,14 +24,29 @@ public class SpawnController : MonoBehaviour
     {
         spawnList = SpawnCreator.instance.getSpawns();
 
-        setPlayerSpawn();
+        SetPlayerSpawn();
+        SetAISpawn();
         
     }
 
-    private void setPlayerSpawn()
+    private void SetPlayerSpawn()
     {
         Vector2 playerSpawn = spawnList[5];
         GameObject.FindGameObjectsWithTag("Player")[0].transform.position = playerSpawn;
+    }
+
+    private void SetAISpawn()
+    {
+        int index = 0;
+
+        foreach(GameObject AI in GameObject.FindGameObjectsWithTag("AI"))
+        {
+            AI.transform.position = spawnList[spawnList.Count - 3 - index];
+            index += 5;
+        }
+
+        Vector2 AISpawn = spawnList[5];
+        GameObject.FindGameObjectsWithTag("Player")[0].transform.position = AISpawn;
     }
 
 }
