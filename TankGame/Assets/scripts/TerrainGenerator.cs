@@ -34,7 +34,7 @@ public class TerrainGenerator : MonoBehaviour
 
         seed = Random.Range(-10000f, 10000f);
         CreateMesh();
-        CreateOutSideCollider();
+        //CreateOutSideCollider();
     }
 
     private void CreateMesh()
@@ -67,8 +67,13 @@ public class TerrainGenerator : MonoBehaviour
         
 
     }
+    private void Update()
+    {
+        
+        
+    }
 
- 
+
 
     private Vector3[] CreateVertices()
     {
@@ -144,15 +149,11 @@ public class TerrainGenerator : MonoBehaviour
         return triangles;
     }
 
-    private void CreateOutSideCollider()
+    private void CreateOutSideCollider(Vector2[] edges)
     {
         terrain.AddComponent<EdgeCollider2D>();
         EdgeCollider2D edgeCollider = terrain.GetComponent<EdgeCollider2D>();
-
-
-        edgeCollider.points[0] = new Vector2(0, 0);
-        edgeCollider.points[1] = new Vector2(10, 10);
-
+        terrain.GetComponent<EdgeCollider2D>().points = edges;
     }
 
 }
