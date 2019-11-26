@@ -17,7 +17,7 @@ public class TerrainGenerator : MonoBehaviour
     public static TerrainGenerator instance = null;
 
     private float seed;
-
+    private GameObject terrain;
     // Start is called before the first frame update
 
 
@@ -33,7 +33,8 @@ public class TerrainGenerator : MonoBehaviour
 
 
         seed = Random.Range(-10000f, 10000f);
-        CreateMesh();   
+        CreateMesh();
+        CreateOutSideCollider();
     }
 
     private void CreateMesh()
@@ -49,7 +50,7 @@ public class TerrainGenerator : MonoBehaviour
         mesh.triangles = triangles;
 
 
-        GameObject terrain = new GameObject("Terrain", typeof(MeshFilter), typeof(MeshRenderer));
+        terrain = new GameObject("Terrain", typeof(MeshFilter), typeof(MeshRenderer));
         terrain.transform.localScale = new Vector3(1, 1, 1);
         terrain.transform.position = new Vector3(0, 0, 1);
 
@@ -60,6 +61,7 @@ public class TerrainGenerator : MonoBehaviour
         ColliderCreator colliderCreator = terrain.AddComponent<ColliderCreator>();
 
         terrain.AddComponent<SpawnCreator>();
+        
 
 
         
@@ -140,6 +142,17 @@ public class TerrainGenerator : MonoBehaviour
 
 
         return triangles;
+    }
+
+    private void CreateOutSideCollider()
+    {
+        terrain.AddComponent<EdgeCollider2D>();
+        EdgeCollider2D edgeCollider = terrain.GetComponent<EdgeCollider2D>();
+
+
+        edgeCollider.points[0] = new Vector2(0, 0);
+        edgeCollider.points[1] = new Vector2(10, 10);
+
     }
 
 }

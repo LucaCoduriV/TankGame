@@ -23,8 +23,15 @@ public class SpawnController : MonoBehaviour
     private void Start()
     {
         spawnList = SpawnCreator.instance.getSpawns();
-        Vector2 playerSpawn = spawnList[0];
-        Debug.Log(playerSpawn);
-        GameObject.Find("Tank").transform.position = playerSpawn;
+
+        setPlayerSpawn();
+        
     }
+
+    private void setPlayerSpawn()
+    {
+        Vector2 playerSpawn = spawnList[5];
+        GameObject.FindGameObjectsWithTag("Player")[0].transform.position = playerSpawn;
+    }
+
 }
