@@ -37,7 +37,7 @@ public class TerrainGenerator : MonoBehaviour
 
     private void Start()
     {
-        CreateOutSideCollider(GetEdges());
+        
     }
 
     private void CreateMesh()
@@ -64,10 +64,10 @@ public class TerrainGenerator : MonoBehaviour
         ColliderCreator colliderCreator = terrain.AddComponent<ColliderCreator>();
 
         terrain.AddComponent<SpawnCreator>();
-        
 
 
-        
+        CreateOutSideCollider(GetEdges());
+
 
     }
     private void Update()
@@ -161,23 +161,13 @@ public class TerrainGenerator : MonoBehaviour
 
     private Vector2[] GetEdges()
     {
-        Vector2[] colliderPath = terrain.GetComponent<PolygonCollider2D>().GetPath(0);
-        Vector2[] edges = new Vector2[4];
+        Vector2[] edges = new Vector2[5];
 
-        float minX = 0f;
-        float maxX = 0f;
-        float minY = 0f;
-        float maxY = 0f;
-
-        for (int i = 0; i < colliderPath.Length; i++)
-        {
-            if (colliderPath[i].x < minX) minX = colliderPath[i].x;
-            if (colliderPath[i].x > maxX) maxX = colliderPath[i].x;
-            if (colliderPath[i].y < minY) minY = colliderPath[i].y;
-            if (colliderPath[i].y > maxY) maxY = colliderPath[i].y;
-        }
-        Debug.Log(edges.ToString());
-
+        edges[0] = new Vector2(terrain.transform.position.x, terrain.transform.position.y);
+        edges[1] = new Vector2(terrainWidth, terrain.transform.position.y);
+        edges[2] = new Vector2(terrainWidth,(float)(heightAddition + heightMultiplier));
+        edges[3] = new Vector2(terrain.transform.position.x, (float)(heightAddition + heightMultiplier));
+        edges[4] = edges[0];
 
         //TODO rajouter les min et max dans le tableau edges
 
