@@ -169,8 +169,6 @@ public class TerrainGenerator : MonoBehaviour
         edges[3] = new Vector2(terrain.transform.position.x, (float)(heightAddition + heightMultiplier));
         edges[4] = edges[0];
 
-        //TODO rajouter les min et max dans le tableau edges
-
         return edges;
     }
 }
