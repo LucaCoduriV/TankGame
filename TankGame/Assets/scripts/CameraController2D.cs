@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraController2D : MonoBehaviour
 {
     GameObject camera;
-    GameObject playerOne;
+    Renderer playerOne;
     Vector3 camPos;
 
 
@@ -13,13 +13,13 @@ public class CameraController2D : MonoBehaviour
     void Start()
     {
         camera = GameObject.Find("Camera");
-        playerOne = GameObject.Find("Tank");
+        playerOne = GameObject.Find("Terrain").GetComponent<Renderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        camPos = playerOne.transform.position;
+        camPos = playerOne.bounds.center;
         camPos.z = camera.transform.position.z;
 
         camera.transform.position = camPos;
